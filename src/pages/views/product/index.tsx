@@ -1,12 +1,5 @@
+import ProductType from "@/types/product.type";
 import { Fragment } from "react";
-
-type ProductType = {
-    id: string;
-    name: string;
-    price: number;
-    image: string;
-    category: string;
-}
 
 const ProductView = ({ products }: {products: ProductType[] }) => {
     return (

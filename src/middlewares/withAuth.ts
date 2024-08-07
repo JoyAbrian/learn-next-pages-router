@@ -7,6 +7,8 @@ export default function withAuth(middleware: NextMiddleware, requireAuth: string
         if (requireAuth.includes(pathname)) {
             const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
             if (!token) {
+                const url = new URL('/auth/login', req.url);
+                url.searchParams.append('callbackUrl', encodeURI(req.url));
                 return NextResponse.redirect(new URL('/auth/login', req.url));
             }
         }
